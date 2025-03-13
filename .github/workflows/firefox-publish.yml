@@ -39,4 +39,5 @@ jobs:
           web-ext sign \
             --source-dir . \
             --api-key="${{ secrets.FIREFOX_JWT_ISSUER }}" \
-            --api-secret="${{ secrets.FIREFOX_JWT_SECRET }}"
+            --api-secret="${{ secrets.FIREFOX_JWT_SECRET }}" \
+            --channel=listed
