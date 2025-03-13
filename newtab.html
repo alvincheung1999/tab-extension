@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>new tab</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <div class="notepad-container">
+    <textarea id="notepad" placeholder="Write notes here..."></textarea>
+  </div>
+
+  <div class="main-panel">
+    <div id="weatherBox">
+      <div id="loadingMessage">Loading weather...</div>
+      <div id="weatherChart" style="display: none;"></div>
+    </div>      
+
+    <div class="container">
+      <h1>Time's ticking...</h1>
+
+      <form id="birth-form">
+        <label for="birthdate">Enter your birthdate:</label><br>
+        <input type="date" id="birthdate" required />
+        <button type="submit">Start</button>
+      </form>
+
+      <div id="age-display" style="display:none; margin-top: 1rem;">Loading...</div>
+      <div id="birthday-countdown" style="display:none; margin-top: 1rem;">Countdown loading...</div>
+    </div>
+  </div>
+
+  <script src="libs/highchart.js"></script>
+  <script src="libs/luxon.min.js"></script>
+  <script src="age.js"></script>
+  <script src="notes.js"></script>
+  <script src="weather.js"></script>
+</body>
+</html>
