@@ -1,17 +1,16 @@
 {
-    "manifest_version": 2,
-    "name": "My Age Timer",
-    "version": "1.0",
-    "description": "Displays your age and a synced notepad.",
-    "license": "MIT",
-    "permissions": ["storage"],
-    "chrome_url_overrides": {
-      "newtab": "newtab.html"
-    },
-    "browser_specific_settings": {
-      "gecko": {
-        "id": "my-age-timer@example.com"
-      }
+  "manifest_version": 3,
+  "name": "My Age Timer",
+  "version": "1.0",
+  "description": "Displays age, a synced notepad, weather and Google Calendar.",
+  "license": "MIT",
+  "permissions": ["storage"],
+  "chrome_url_overrides": {
+    "newtab": "newtab.html"
+  },
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "my-age-timer@example.com"
     }
   }
-  
+}
