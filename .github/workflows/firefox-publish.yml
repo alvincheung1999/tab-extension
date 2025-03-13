@@ -1,4 +1,4 @@
-name: Publish Firefox Extension
+name: Publish to Firefox Add-ons
 
 on:
   push:
@@ -6,26 +6,37 @@ on:
       - master
 
 jobs:
-  build-and-sign:
+  publish:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
+      - name: 📦 Checkout repository
+        uses: actions/checkout@v3
 
-      - name: Set up Node.js
-        uses: actions/setup-node@v4
+      - name: 🧰 Set up Node.js
+        uses: actions/setup-node@v3
         with:
-          node-version: '20'
+          node-version: 20
 
-      - name: Install web-ext
+      - name: 🔁 Bump version in manifest.json
+        run: |
+          node -e "
+          const fs = require('fs');
+          const path = 'manifest.json';
+          const manifest = JSON.parse(fs.readFileSync(path));
+          const v = manifest.version.split('.').map(Number);
+          v[2]++; // bump patch version
+          manifest.version = v.join('.');
+          fs.writeFileSync(path, JSON.stringify(manifest, null, 2));
+          console.log('✅ Bumped version to', manifest.version);
+          "
+
+      - name: 🧪 Install web-ext
         run: npm install -g web-ext
 
-      - name: Sign Firefox Extension
+      - name: 🚀 Publish to AMO
         run: |
           web-ext sign \
-            --source-dir=. \
-            --artifacts-dir=artifacts \
-            --channel=listed \
+            --source-dir . \
             --api-key="${{ secrets.FIREFOX_JWT_ISSUER }}" \
             --api-secret="${{ secrets.FIREFOX_JWT_SECRET }}"
